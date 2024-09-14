@@ -7,21 +7,29 @@ export class Area{
     protected lado:number;
     protected radio:number;
     
-    constructor(areaC:number, areaR:number, areaCir:number,base:number, altura:number,lado:number, radio:number){
-        this.areaC=areaC;
-        this.areaCir=areaCir;
-        this.areaR=areaR;
+    constructor(base: number, altura: number, lado: number, radio: number){
+        this.areaC=0;
+        this.areaCir=0;
+        this.areaR=0;
         this.base=base;
         this.altura=altura;
         this.lado=lado;
         this.radio=radio;
     }
 
-    calcularAreas(){
-        this.areaCir=3.1416*this.radio*this.radio;
-        this.areaC=this.lado*this.lado;
-        this.areaR=this.base*this.altura;
-      console.log(`La area del circulo es: ${this.areaCir}, la area del cuadrado es: ${this.areaC}, la area del rectangulo es: ${this.areaR}`);
+    calcularAreaRectangulo(): number {
+        this.areaR = this.base * this.altura;
+        return this.areaR;
+    }
+
+    calcularAreaCuadrado(): number {
+        this.areaC = this.lado * this.lado;
+        return this.areaC;
+    }
+
+    calcularAreaCirculo(): number {
+        this.areaCir = 3.1416 * this.radio * this.radio;
+        return this.areaCir;
     }
 }
 

@@ -6,22 +6,38 @@ class Volumen extends Area{
     private volumenCir:number;
     private alturaVol:number;
 
-    constructor( areaC:number, areaR:number, areaCir:number,base:number, altura:number,lado:number, radio:number,volumenR:number ,volumenC:number, volumenCir:number, alturaVol:number){
-        super(areaC,areaCir,areaR,base,altura,lado,radio);
-        this.volumenR=volumenR;
-        this.volumenC=volumenC;
-        this.volumenCir=volumenCir;
+    constructor(base: number, altura: number, lado: number, radio: number, alturaVol: number){
+        super(base,altura,lado,radio);
+        this.volumenR=0;
+        this.volumenC=0;
+        this.volumenCir=0;
         this.alturaVol=alturaVol;
     }
 
-    CalcularVolumen():void{
-        this.calcularAreas();
-        this.volumenR=this.areaR*this.alturaVol;
-        this.volumenC=this.areaC*this.alturaVol/3;
-        this.volumenCir=this.areaCir*this.alturaVol;
-        console.log(`El volumen de la piramide es: ${this.volumenR} cilindro ${this.volumenCir} primas ${this.volumenC} `);
+    calcularVolumenPrisma(): number {
+        this.volumenR = this.calcularAreaRectangulo() * this.alturaVol;
+        return this.volumenR;
+    }
+
+    calcularVolumenPiramide(): number {
+        this.volumenC = this.calcularAreaCuadrado() * this.alturaVol / 3;
+        return this.volumenC;
+    }
+
+    calcularVolumenCilindro(): number {
+        this.volumenCir = this.calcularAreaCirculo() * this.alturaVol;
+        return this.volumenCir;
+    }
+
+    calcularTodo(): void {
+        console.log(`Área del rectángulo: ${this.calcularAreaRectangulo()}`);
+        console.log(`Área del cuadrado: ${this.calcularAreaCuadrado()}`);
+        console.log(`Área del círculo: ${this.calcularAreaCirculo()}`);
+        console.log(`Volumen del Prisma: ${this.calcularVolumenPrisma()}`);
+        console.log(`Volumen del Piramide: ${this.calcularVolumenPiramide()}`);
+        console.log(`Volumen del cilindro: ${this.calcularVolumenCilindro()}`);
     }
 }
 
-const volumen= new Volumen(0,0,0,10,10,10,10,0,0,0,2);
-volumen.CalcularVolumen();
+const volumen= new Volumen(10,10,10,10,2);
+volumen.calcularTodo();
